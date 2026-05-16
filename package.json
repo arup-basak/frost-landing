@@ -3,16 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "dev": "vinext dev",
+    "build": "vinext build",
+    "start": "vinext start",
     "lint": "biome check",
     "format": "biome format --write"
   },
   "dependencies": {
+    "@cloudflare/vite-plugin": "^1.37.1",
     "next": "16.2.6",
-    "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6"
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.0",
@@ -20,9 +21,14 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^6.0.2",
+    "@vitejs/plugin-rsc": "^0.5.26",
     "babel-plugin-react-compiler": "1.0.0",
+    "react-server-dom-webpack": "^19.2.6",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vinext": "^0.0.50",
+    "vite": "^8.0.13"
   },
   "ignoreScripts": [
     "sharp",
@@ -31,5 +37,6 @@
   "trustedDependencies": [
     "sharp",
     "unrs-resolver"
-  ]
+  ],
+  "type": "module"
 }

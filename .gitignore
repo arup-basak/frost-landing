@@ -14,7 +14,7 @@
 /coverage
 
 # next.js
-/.next/
+/.vinext/
 /out/
 
 # production
@@ -39,3 +39,15 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+/dist/
+.wrangler
+
+# OpenNext
+.open-next
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+
+!.env.example
