@@ -1,26 +1,84 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-manrope);
+  --font-mono: var(--font-jetbrains-mono);
+
+  --color-background: #eef4f9;
+  --color-foreground: #16202b;
+
+  --color-ink: #16202b;
+  --color-ink-muted: #51616f;
+  --color-ink-faint: #8a98a5;
+
+  --color-frost-pale: #e8f1f8;
+  --color-frost-mist: #f4f8fb;
+  --color-frost-edge: #d4e2ee;
+  --color-frost-deep: #c2d6e6;
+
+  --color-glacier: #3d7ea6;
+  --color-glacier-bright: #5b9fc9;
+  --color-glacier-deep: #285874;
+
+  --ease-glass: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  color-scheme: light;
+}
+
+html {
+  background: var(--color-background);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Ambient idle loops only — everything scroll/interaction-driven is GSAP.
+   Transform/opacity only, GPU-friendly. */
+@keyframes haze-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(3%, -2%, 0) scale(1.08);
+  }
+}
+
+@keyframes scroll-cue {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translate3d(0, 6px, 0);
+    opacity: 0.9;
+  }
+}
+
+.haze-blob {
+  animation: haze-drift 26s var(--ease-glass) infinite;
+  will-change: transform;
+}
+
+.scroll-cue {
+  animation: scroll-cue 2.4s var(--ease-glass) infinite;
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .haze-blob,
+  .scroll-cue {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
 }
