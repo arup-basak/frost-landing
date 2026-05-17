@@ -4,31 +4,33 @@
   --font-sans: var(--font-manrope);
   --font-mono: var(--font-jetbrains-mono);
 
-  --color-background: #eef4f9;
-  --color-foreground: #16202b;
+  --color-background: #0a0f14;
+  --color-foreground: #eaf2f8;
 
-  --color-ink: #16202b;
-  --color-ink-muted: #51616f;
-  --color-ink-faint: #8a98a5;
+  --color-ink: #eaf2f8;
+  --color-ink-muted: #9fb3c4;
+  --color-ink-faint: #5d7286;
 
-  --color-frost-pale: #e8f1f8;
-  --color-frost-mist: #f4f8fb;
-  --color-frost-edge: #d4e2ee;
-  --color-frost-deep: #c2d6e6;
+  --color-frost-pale: #141b24;
+  --color-frost-mist: #0e141c;
+  --color-frost-edge: #243140;
+  --color-frost-deep: #1c2733;
 
-  --color-glacier: #3d7ea6;
-  --color-glacier-bright: #5b9fc9;
-  --color-glacier-deep: #285874;
+  --color-glacier: #5b9fc9;
+  --color-glacier-bright: #7fc8ef;
+  --color-glacier-deep: #3d7ea6;
 
   --ease-glass: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 :root {
-  color-scheme: light;
+  color-scheme: dark;
+  --accent-grad: linear-gradient(135deg, #7fc8ef 0%, #5b9fc9 55%, #4f86c6 100%);
 }
 
 html {
   background: var(--color-background);
+  scroll-behavior: smooth;
 }
 
 body {
@@ -39,6 +41,19 @@ body {
   overflow-x: hidden;
 }
 
+::selection {
+  background: rgba(127, 200, 239, 0.3);
+  color: #eaf2f8;
+}
+
+/* Icy gradient text — for headline accents. */
+.accent-text {
+  background: var(--accent-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
 /* Ambient idle loops only — everything scroll/interaction-driven is GSAP.
    Transform/opacity only, GPU-friendly. */
 @keyframes haze-drift {
@@ -47,7 +62,19 @@ body {
     transform: translate3d(0, 0, 0) scale(1);
   }
   50% {
-    transform: translate3d(3%, -2%, 0) scale(1.08);
+    transform: translate3d(3%, -2%, 0) scale(1.12);
+  }
+}
+
+@keyframes aurora-drift {
+  0%,
+  100% {
+    transform: translate3d(-4%, 0, 0) scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate3d(5%, -3%, 0) scale(1.15);
+    opacity: 0.85;
   }
 }
 
@@ -68,6 +95,11 @@ body {
   will-change: transform;
 }
 
+.aurora-blob {
+  animation: aurora-drift 22s var(--ease-glass) infinite;
+  will-change: transform, opacity;
+}
+
 .scroll-cue {
   animation: scroll-cue 2.4s var(--ease-glass) infinite;
   will-change: transform, opacity;
@@ -75,6 +107,7 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .haze-blob,
+  .aurora-blob,
   .scroll-cue {
     animation: none;
   }

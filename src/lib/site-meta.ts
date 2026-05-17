@@ -17,7 +17,7 @@ export const siteMeta = {
     "apple silicon focus app",
     "mac window dimmer",
   ],
-  themeColor: "#E8F1F8",
+  themeColor: "#0a0f14",
   og: {
     title: "Frosty — Focus through frosted glass on macOS",
     description:

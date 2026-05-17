@@ -10,7 +10,7 @@ const rows = [
   { label: "License", value: "Lifetime, 2 Macs" },
   { label: "Updates", value: "Unlimited, forever" },
   { label: "Trial", value: "7 days, full features" },
-  { label: "Requirements", value: "macOS 14 Sonoma or later" },
+  { label: "Requires", value: "macOS 14 or later" },
 ];
 
 export function PricingSection() {
@@ -57,63 +57,65 @@ export function PricingSection() {
   );
 
   return (
-    <section
-      ref={ref}
-      id="pricing"
-      className="relative bg-frost-mist px-6 py-28"
-    >
+    <section ref={ref} id="pricing" className="relative px-6 py-28">
       <div className="mx-auto max-w-xl text-center">
-        <p className="mb-4 font-mono text-glacier-deep text-xs uppercase tracking-[0.22em]">
+        <p className="mb-4 font-mono text-glacier-bright text-xs uppercase tracking-[0.22em]">
           Pricing
         </p>
         <SplitHeading
           as="h2"
           className="text-balance font-semibold text-4xl text-ink leading-tight tracking-tight sm:text-5xl"
         >
-          One-time purchase. No subscription.
+          Pay once. Yours forever.
         </SplitHeading>
-        <p className="mt-4 text-ink-muted">Lifetime updates, forever.</p>
+        <p className="mt-4 text-ink-muted">No subscription, no upsells.</p>
 
-        <div className="mt-10 rounded-3xl border border-white/70 bg-white p-10 shadow-[0_50px_90px_-50px_rgba(22,32,43,0.55)]">
-          <div className="flex items-end justify-center gap-4">
-            <span
-              data-launch
-              className="font-semibold text-7xl text-ink tracking-tight"
-            >
-              $9
-            </span>
-            <span className="relative inline-block pb-2" data-regular>
-              <span className="font-medium text-3xl text-ink-faint">$14</span>
-              <span
-                data-strike
-                className="absolute inset-x-0 top-1/2 block h-0.5 bg-[#ff5f57]"
-              />
-            </span>
-          </div>
-          <p className="mt-2 font-mono text-glacier-deep text-xs uppercase tracking-[0.16em]">
-            Launch price
-          </p>
-
-          <dl className="mt-8 divide-y divide-frost-edge/70 text-left">
-            {rows.map((row) => (
-              <div
-                key={row.label}
-                className="flex items-center justify-between py-3"
-              >
-                <dt className="text-ink-muted text-sm">{row.label}</dt>
-                <dd className="font-medium text-ink text-sm">{row.value}</dd>
-              </div>
-            ))}
-          </dl>
-
+        <div className="relative mt-10 overflow-hidden rounded-3xl border border-white/10 bg-frost-pale p-10 shadow-[0_50px_120px_-50px_rgba(0,0,0,0.95)]">
           <div
-            id="download"
-            className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center"
-          >
-            <CtaButton href="#download">Start the 7-day trial</CtaButton>
-            <CtaButton href="#download" variant="ghost">
-              Buy Frosty
-            </CtaButton>
+            className="pointer-events-none absolute -top-24 left-1/2 size-72 -translate-x-1/2 rounded-full bg-glacier/15 blur-3xl"
+            aria-hidden
+          />
+          <div className="relative">
+            <div className="flex items-end justify-center gap-4">
+              <span
+                data-launch
+                className="font-semibold text-7xl text-ink tracking-tight"
+              >
+                $9
+              </span>
+              <span className="relative inline-block pb-2" data-regular>
+                <span className="font-medium text-3xl text-ink-faint">$14</span>
+                <span
+                  data-strike
+                  className="absolute inset-x-0 top-1/2 block h-0.5 bg-[#ff5f57]"
+                />
+              </span>
+            </div>
+            <p className="mt-2 font-mono text-glacier-bright text-xs uppercase tracking-[0.16em]">
+              Launch price
+            </p>
+
+            <dl className="mt-8 divide-y divide-white/8 text-left">
+              {rows.map((row) => (
+                <div
+                  key={row.label}
+                  className="flex items-center justify-between py-3"
+                >
+                  <dt className="text-ink-muted text-sm">{row.label}</dt>
+                  <dd className="font-medium text-ink text-sm">{row.value}</dd>
+                </div>
+              ))}
+            </dl>
+
+            <div
+              id="download"
+              className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center"
+            >
+              <CtaButton href="#download">Start free trial</CtaButton>
+              <CtaButton href="#download" variant="ghost">
+                Buy Frosty
+              </CtaButton>
+            </div>
           </div>
         </div>
       </div>

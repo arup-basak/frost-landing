@@ -22,8 +22,8 @@ const thumbs = [
 
 function Thumb({ label }: { label: string }) {
   return (
-    <div className="relative w-24 overflow-hidden rounded-md border border-white/70 bg-white shadow-[0_12px_24px_-14px_rgba(22,32,43,0.5)] sm:w-28">
-      <div className="flex h-4 items-center gap-1 border-frost-edge/60 border-b bg-white/90 px-2">
+    <div className="relative w-24 overflow-hidden rounded-md border border-white/10 bg-frost-pale shadow-[0_12px_28px_-12px_rgba(0,0,0,0.8)] sm:w-28">
+      <div className="flex h-4 items-center gap-1 border-white/8 border-b bg-[#1a232e] px-2">
         <span className="size-1.5 rounded-full bg-[#ff5f57]" />
         <span className="size-1.5 rounded-full bg-[#febc2e]" />
         <span className="size-1.5 rounded-full bg-[#28c840]" />
@@ -31,20 +31,20 @@ function Thumb({ label }: { label: string }) {
           {label}
         </span>
       </div>
-      <div className="h-14 bg-gradient-to-br from-frost-mist to-frost-pale p-1.5">
-        <div className="h-1.5 w-3/4 rounded-full bg-ink/10" />
-        <div className="mt-1 h-1.5 w-1/2 rounded-full bg-ink/10" />
+      <div className="h-14 bg-gradient-to-br from-[#161e28] to-[#11181f] p-1.5">
+        <div className="h-1.5 w-3/4 rounded-full bg-white/10" />
+        <div className="mt-1 h-1.5 w-1/2 rounded-full bg-white/10" />
       </div>
       <div
         data-thumb-frost
-        className="absolute inset-0 bg-frost-pale/70 backdrop-blur-[4px]"
+        className="absolute inset-0 bg-glacier/15 backdrop-blur-[4px]"
         style={{ opacity: 0 }}
       />
     </div>
   );
 }
 
-export function NoiseSection() {
+export function ProblemSection() {
   const ref = useRef<HTMLElement>(null);
 
   useGSAP(
@@ -108,36 +108,25 @@ export function NoiseSection() {
           </div>
         ))}
 
-        <div className="-translate-x-1/2 -translate-y-1/2 absolute top-1/2 left-1/2 w-full max-w-xl rounded-2xl border border-white/70 bg-frost-mist/85 p-8 text-center shadow-[0_40px_80px_-40px_rgba(22,32,43,0.5)] backdrop-blur-md sm:p-10">
+        <div className="-translate-x-1/2 -translate-y-1/2 absolute top-1/2 left-1/2 w-full max-w-xl rounded-2xl border border-white/10 bg-frost-mist/90 p-8 text-center shadow-[0_40px_100px_-40px_rgba(0,0,0,0.9)] backdrop-blur-md sm:p-10">
+          <p className="mb-4 font-mono text-glacier-bright text-xs uppercase tracking-[0.22em]">
+            The problem
+          </p>
           <SplitHeading
             as="h2"
             className="text-balance font-semibold text-3xl text-ink leading-tight tracking-tight sm:text-[2.6rem]"
           >
-            Your attention isn't broken. Your screen is.
+            Twelve windows open. One is the work.
           </SplitHeading>
           <p className="mt-5 text-balance text-ink-muted leading-relaxed">
-            You don't have a focus problem. You have{" "}
-            <strong className="font-semibold text-ink">twelve windows</strong>{" "}
-            quietly screaming for your attention: a half-read Slack thread, a
-            Figma file from last Tuesday, a terminal you forgot you opened, a
-            browser tab with a flight you haven't booked.
+            Slack, a stale Figma tab, a terminal you forgot you opened — every
+            inactive window quietly competes for your attention.
           </p>
-          <p className="mt-4 text-balance text-ink-muted leading-relaxed">
-            Modern macOS gives you infinite room to think — and then fills that
-            room with everything <em>but</em> the thing you're thinking about.
-          </p>
-          <p className="mt-6 font-medium text-glacier-deep text-lg">
-            Frosty is the layer that puts the noise behind glass.
+          <p className="mt-4 font-medium text-glacier-bright text-lg">
+            Frosty puts the noise behind glass.
           </p>
         </div>
       </div>
-
-      <p className="mx-auto mt-4 max-w-xl text-balance text-center text-ink-muted leading-relaxed">
-        The window you're working in stays sharp, vivid, native. Everything else
-        softens into a calm, translucent backdrop you can <em>see past</em> but
-        no longer <em>get lost in</em>. The screen finally stops competing with
-        you.
-      </p>
     </section>
   );
 }

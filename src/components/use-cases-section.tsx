@@ -1,6 +1,5 @@
 "use client";
 
-import { useGSAP } from "@gsap/react";
 import {
   BookOpen,
   Brain,
@@ -8,150 +7,92 @@ import {
   Code,
   Target,
 } from "@phosphor-icons/react";
-import { useRef } from "react";
-import { gsap } from "@/lib/gsap";
+import { Reveal } from "./reveal";
+import { SplitHeading } from "./split-heading";
 
 const useCases = [
   {
     icon: Target,
     title: "Deep work",
-    body: "You have ninety minutes and one document. Frosty makes the document the only thing you can really see. The rest of the desktop is still there — Slack, Mail, Linear — but visually quiet enough that your eyes stop drifting to them every forty seconds.",
+    body: "Ninety minutes, one document. Frosty makes it the only thing you can really see.",
   },
   {
     icon: Code,
     title: "Coding with intent",
-    body: "Writing the function in your editor while your terminal, browser, and Notion docs frost gently behind it is a different experience from staring into a wall of equally-bright windows. The active editor pops. Context-switching becomes a deliberate act instead of an accidental one.",
+    body: "Your editor stays sharp while the terminal, browser, and docs frost quietly behind it.",
   },
   {
     icon: Brain,
-    title: "ADHD-aware workflows",
-    body: "For minds that have a hard time choosing what to attend to, Frosty makes the choice visually obvious. The bright, sharp window is the one you're in. Everything else is recognizably not now — the closest thing many users have found to a 'quiet room' mode for their screen.",
+    title: "ADHD-aware focus",
+    body: "The bright window is the one you're in. Everything else is visibly 'not now'.",
   },
   {
     icon: Broadcast,
-    title: "Screen sharing without panic",
-    body: "About to share your screen and realised you have a Notion doc with a half-written resignation letter, six personal tabs, and an unsent text in iMessage? Activate the deck you're presenting. Everything else frosts into legibility-free softness. Your audience sees the active window — nothing else is readable.",
+    title: "Screen sharing",
+    body: "Activate the deck you're presenting — every other window frosts past readability.",
   },
   {
     icon: BookOpen,
-    title: "Reading and writing",
-    body: "Long-form reading and writing both benefit from a screen that stops behaving like a TV with twelve channels on at once. Frost the rest. Read the one.",
+    title: "Reading & writing",
+    body: "Frost the rest, read the one. The screen stops acting like twelve channels at once.",
   },
 ];
 
 export function UseCasesSection() {
-  const ref = useRef<HTMLElement>(null);
-
-  useGSAP(
-    () => {
-      const scope = ref.current;
-      if (!scope) return;
-      const track = scope.querySelector<HTMLElement>("[data-track]");
-      const pin = scope.querySelector<HTMLElement>("[data-pin]");
-      if (!track || !pin) return;
-
-      const mm = gsap.matchMedia();
-      const panelCount = useCases.length + 1;
-
-      mm.add(
-        "(min-width: 1024px) and (prefers-reduced-motion: no-preference)",
-        () => {
-          const tween = gsap.to(track, {
-            xPercent: -100 * ((panelCount - 1) / panelCount),
-            ease: "none",
-            scrollTrigger: {
-              trigger: scope,
-              pin,
-              scrub: 1,
-              start: "top top",
-              end: () => `+=${window.innerWidth * (panelCount - 1)}`,
-              invalidateOnRefresh: true,
-            },
-          });
-
-          // Inner parallax — each panel's haze drifts against the scroll.
-          const blobs = gsap.utils.toArray<HTMLElement>(
-            "[data-panel-haze]",
-            scope,
-          );
-          for (const blob of blobs) {
-            gsap.fromTo(
-              blob,
-              { xPercent: -18 },
-              {
-                xPercent: 18,
-                ease: "none",
-                scrollTrigger: {
-                  trigger: scope,
-                  scrub: 1,
-                  start: "top top",
-                  end: () => `+=${window.innerWidth * (panelCount - 1)}`,
-                },
-              },
-            );
-          }
-
-          return () => tween.kill();
-        },
-      );
-
-      return () => mm.revert();
-    },
-    { scope: ref },
-  );
-
   return (
-    <section ref={ref} id="use-cases" className="relative">
-      <div data-pin className="overflow-hidden lg:h-screen">
-        <div
-          data-track
-          className="flex flex-col lg:h-full lg:flex-row lg:flex-nowrap"
+    <section id="use-cases" className="relative overflow-hidden px-6 py-28">
+      <div
+        className="aurora-blob pointer-events-none absolute top-20 right-0 size-[34rem] rounded-full bg-glacier/12 blur-3xl"
+        aria-hidden
+      />
+      <div className="relative mx-auto max-w-6xl">
+        <Reveal
+          className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+          stagger={0.07}
+          start="top 80%"
         >
-          {/* Intro panel */}
-          <div className="relative flex w-full shrink-0 items-center justify-center bg-frost-mist px-6 py-24 lg:h-full lg:w-screen lg:py-0">
-            <div className="max-w-md">
-              <p className="mb-4 font-mono text-glacier-deep text-xs uppercase tracking-[0.22em]">
-                In the wild
-              </p>
-              <h2 className="text-balance font-semibold text-4xl text-ink leading-tight tracking-tight sm:text-5xl">
-                The five ways people actually use Frosty.
-              </h2>
-              <p className="mt-5 text-ink-muted leading-relaxed">
-                Same layer of glass, five very different reasons to reach for
-                it. Scroll on.
-              </p>
-            </div>
+          {/* Intro cell */}
+          <div data-reveal className="flex flex-col justify-center">
+            <p className="mb-4 font-mono text-glacier-bright text-xs uppercase tracking-[0.22em]">
+              Use cases
+            </p>
+            <SplitHeading
+              as="h2"
+              className="text-balance font-semibold text-4xl text-ink leading-tight tracking-tight sm:text-5xl"
+            >
+              Five ways people reach for Frosty.
+            </SplitHeading>
+            <p className="mt-5 text-ink-muted leading-relaxed">
+              Same pane of glass, very different reasons to switch it on.
+            </p>
           </div>
 
-          {/* Use-case panels */}
+          {/* Use-case cards */}
           {useCases.map((useCase, i) => (
-            <div
+            <article
               key={useCase.title}
-              className="relative flex w-full shrink-0 items-center justify-center overflow-hidden border-frost-edge/60 border-t bg-background px-6 py-24 lg:h-full lg:w-screen lg:border-t-0 lg:border-l lg:py-0"
+              data-reveal
+              className="group relative overflow-hidden rounded-2xl border border-white/8 bg-frost-pale/70 p-7 backdrop-blur-sm transition-[transform,border-color] duration-300 ease-glass hover:-translate-y-1 hover:border-glacier/40"
             >
-              <div
-                data-panel-haze
-                className="pointer-events-none absolute top-1/4 left-1/4 size-[28rem] rounded-full bg-glacier/10 blur-3xl"
+              <span
+                className="absolute top-4 right-5 font-mono text-5xl text-frost-edge/70 transition-colors duration-300 group-hover:text-glacier/30"
                 aria-hidden
+              >
+                0{i + 1}
+              </span>
+              <useCase.icon
+                weight="duotone"
+                className="size-9 text-glacier-bright"
               />
-              <div className="relative max-w-md">
-                <span className="font-mono text-7xl text-frost-deep">
-                  0{i + 1}
-                </span>
-                <useCase.icon
-                  weight="duotone"
-                  className="mt-2 size-10 text-glacier"
-                />
-                <h3 className="mt-4 font-semibold text-3xl text-ink tracking-tight">
-                  {useCase.title}
-                </h3>
-                <p className="mt-4 text-ink-muted text-lg leading-relaxed">
-                  {useCase.body}
-                </p>
-              </div>
-            </div>
+              <h3 className="mt-5 font-semibold text-ink text-xl tracking-tight">
+                {useCase.title}
+              </h3>
+              <p className="mt-2 text-ink-muted leading-relaxed">
+                {useCase.body}
+              </p>
+            </article>
           ))}
-        </div>
+        </Reveal>
       </div>
     </section>
   );

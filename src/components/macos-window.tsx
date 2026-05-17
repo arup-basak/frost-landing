@@ -32,9 +32,9 @@ export function MacosWindow({
 }: MacosWindowProps) {
   return (
     <div
-      className={`relative overflow-hidden rounded-xl border border-white/70 bg-frost-mist shadow-[0_30px_60px_-25px_rgba(22,32,43,0.45)] ${className}`}
+      className={`relative overflow-hidden rounded-xl border border-white/10 bg-frost-pale shadow-[0_30px_70px_-25px_rgba(0,0,0,0.8)] ${className}`}
     >
-      <div className="flex h-9 items-center gap-2 border-frost-edge/70 border-b bg-white/80 px-4">
+      <div className="flex h-9 items-center gap-2 border-white/8 border-b bg-[#1a232e] px-4">
         <span className="size-3 rounded-full bg-[#ff5f57]" />
         <span className="size-3 rounded-full bg-[#febc2e]" />
         <span className="size-3 rounded-full bg-[#28c840]" />
@@ -54,15 +54,14 @@ export function MacosWindow({
             className="object-cover"
           />
         ) : (
-          <div className="absolute inset-0 bg-gradient-to-br from-white via-frost-mist to-frost-pale">
-            {children}
-          </div>
+          <div className="absolute inset-0 bg-[#11181f]">{children}</div>
         )}
 
-        {/* Frost layer — GSAP target. Blurs the recognisable content behind it. */}
+        {/* Frost layer — GSAP target. Milky frosted glass: the blur lifts
+            brightness so content behind reads as glass, not a dark blob. */}
         <div
           data-frost
-          className="absolute inset-0 backdrop-blur-[11px]"
+          className="absolute inset-0 backdrop-blur-[18px] backdrop-brightness-150 backdrop-saturate-125"
           style={{ opacity: frosted ? 1 : 0 }}
         >
           {frostedSrc ? (
@@ -74,10 +73,9 @@ export function MacosWindow({
               className="object-cover"
               aria-hidden
             />
-          ) : (
-            <div className="absolute inset-0 bg-frost-pale/45" />
-          )}
-          <div className="absolute inset-0 bg-gradient-to-br from-white/45 to-frost-deep/30" />
+          ) : null}
+          <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(196,222,242,0.32),rgba(123,162,196,0.16)_55%,rgba(58,92,124,0.22))]" />
+          <div className="absolute inset-x-0 top-0 h-px bg-white/30" />
         </div>
       </div>
     </div>

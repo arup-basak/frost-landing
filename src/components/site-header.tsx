@@ -6,6 +6,7 @@ import { useRef } from "react";
 import { gsap } from "@/lib/gsap";
 
 const navLinks = [
+  { label: "How it works", href: "#how" },
   { label: "Features", href: "#features" },
   { label: "Use cases", href: "#use-cases" },
   { label: "Pricing", href: "#pricing" },
@@ -37,7 +38,7 @@ export function SiteHeader() {
     <header ref={ref} className="fixed inset-x-0 top-0 z-50">
       <div
         data-bar
-        className="absolute inset-0 border-frost-edge/70 border-b bg-frost-mist/80 backdrop-blur-lg"
+        className="absolute inset-0 border-white/8 border-b bg-[#0a0f14]/80 backdrop-blur-xl"
         style={{ opacity: 0 }}
       />
       <nav className="relative mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
@@ -45,7 +46,7 @@ export function SiteHeader() {
           href="#top"
           className="flex items-center gap-2 font-semibold text-ink text-lg tracking-tight"
         >
-          <Snowflake weight="duotone" className="size-6 text-glacier" />
+          <Snowflake weight="duotone" className="size-6 text-glacier-bright" />
           Frosty
         </a>
 
@@ -63,7 +64,7 @@ export function SiteHeader() {
 
         <a
           href="#download"
-          className="rounded-full bg-glacier-deep px-5 py-2 font-medium text-frost-mist text-sm transition-[transform,background-color] duration-300 ease-glass hover:-translate-y-0.5 hover:bg-glacier"
+          className="rounded-full bg-[linear-gradient(135deg,#7fc8ef,#5b9fc9)] px-5 py-2 font-semibold text-[#06121d] text-sm shadow-[0_0_24px_-6px_rgba(127,200,239,0.7)] transition-transform duration-300 ease-glass hover:-translate-y-0.5"
         >
           Download
         </a>

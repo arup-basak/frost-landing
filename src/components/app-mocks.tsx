@@ -1,12 +1,13 @@
 /**
  * Realistic fake app UIs rendered inside window mockups. Recognisable content
  * is the point — it's what makes the frost effect read as "a real window went
- * blurry" rather than an abstract placeholder.
+ * blurry" rather than an abstract placeholder. Styled as macOS dark-mode apps.
  */
 
-const kw = "text-[#8250df]";
-const ty = "text-[#0a7ea4]";
-const nm = "text-[#bc4c00]";
+const surface = "bg-[#11181f]";
+const kw = "text-[#c792ea]";
+const ty = "text-[#7fdbca]";
+const nm = "text-[#f78c6c]";
 const cm = "text-ink-faint";
 
 export function CodeMock() {
@@ -29,7 +30,7 @@ export function CodeMock() {
     <>
       {"  "}
       <span className={kw}>func</span>{" "}
-      <span className="text-[#1f6feb]">apply</span>
+      <span className="text-[#82aaff]">apply</span>
       (to window: <span className={ty}>NSWindow</span>) {"{"}
     </>,
     <>
@@ -44,12 +45,12 @@ export function CodeMock() {
       {"    "}glass.state = <span className={nm}>.active</span>
     </>,
     <>{"    "}window.contentView?.addSubview(glass)</>,
-    <>{"  }"}</>,
-    <>{"}"}</>,
+    "  }",
+    "}",
   ];
   return (
-    <div className="flex h-full bg-white">
-      <div className="w-8 shrink-0 bg-frost-mist py-3 font-mono text-[9px] text-ink-faint">
+    <div className={`flex h-full ${surface}`}>
+      <div className="w-8 shrink-0 bg-[#0d141b] py-3 font-mono text-[9px] text-ink-faint">
         {lines.map((_, i) => (
           <div
             // biome-ignore lint/suspicious/noArrayIndexKey: fixed gutter
@@ -96,8 +97,8 @@ const chat = [
 
 export function ChatMock() {
   return (
-    <div className="flex h-full flex-col bg-white">
-      <div className="border-frost-edge/60 border-b px-4 py-2.5">
+    <div className={`flex h-full flex-col ${surface}`}>
+      <div className="border-white/8 border-b px-4 py-2.5">
         <p className="font-semibold text-[12px] text-ink"># design-sync</p>
         <p className="text-[9px] text-ink-faint">14 members · 3 online</p>
       </div>
@@ -120,7 +121,7 @@ export function ChatMock() {
             </div>
           </div>
         ))}
-        <div className="mt-1 rounded-md border border-frost-edge px-3 py-2 text-[10px] text-ink-faint">
+        <div className="mt-1 rounded-md border border-white/10 px-3 py-2 text-[10px] text-ink-faint">
           Message #design-sync
         </div>
       </div>
@@ -130,12 +131,12 @@ export function ChatMock() {
 
 export function BrowserMock() {
   return (
-    <div className="flex h-full flex-col bg-white">
-      <div className="flex items-center gap-2 border-frost-edge/60 border-b bg-frost-mist px-3 py-2">
-        <span className="rounded-md bg-white px-2 py-1 text-[9px] text-ink-muted ring-1 ring-frost-edge">
+    <div className={`flex h-full flex-col ${surface}`}>
+      <div className="flex items-center gap-2 border-white/8 border-b bg-[#0d141b] px-3 py-2">
+        <span className="rounded-md bg-white/5 px-2 py-1 text-[9px] text-ink-muted ring-1 ring-white/10">
           Flights · Lisbon
         </span>
-        <span className="flex-1 rounded-full bg-white px-3 py-1 text-[9px] text-ink-faint ring-1 ring-frost-edge">
+        <span className="flex-1 rounded-full bg-white/5 px-3 py-1 text-[9px] text-ink-faint ring-1 ring-white/10">
           google.com/travel/flights
         </span>
       </div>
@@ -150,13 +151,13 @@ export function BrowserMock() {
         ].map((f) => (
           <div
             key={f.air}
-            className="flex items-center justify-between rounded-lg border border-frost-edge px-3 py-2"
+            className="flex items-center justify-between rounded-lg border border-white/10 px-3 py-2"
           >
             <div>
               <p className="text-[10px] text-ink">{f.air}</p>
               <p className="font-mono text-[9px] text-ink-faint">{f.time}</p>
             </div>
-            <span className="font-semibold text-[11px] text-glacier-deep">
+            <span className="font-semibold text-[11px] text-glacier-bright">
               {f.price}
             </span>
           </div>
@@ -173,40 +174,40 @@ export function CalendarMock() {
       top: "10%",
       h: "16%",
       label: "Standup",
-      tone: "bg-glacier/25 text-glacier-deep",
+      tone: "bg-glacier/25 text-glacier-bright",
     },
     {
       day: 2,
       top: "34%",
       h: "26%",
       label: "Design review",
-      tone: "bg-[#e8743b]/25 text-[#bc4c00]",
+      tone: "bg-[#e8743b]/25 text-[#f6a06f]",
     },
     {
       day: 0,
       top: "52%",
       h: "18%",
       label: "Focus block",
-      tone: "bg-[#28c840]/25 text-[#1d7a32]",
+      tone: "bg-[#28c840]/25 text-[#6fdc8a]",
     },
     {
       day: 3,
       top: "64%",
       h: "16%",
       label: "1:1 Mia",
-      tone: "bg-glacier/25 text-glacier-deep",
+      tone: "bg-glacier/25 text-glacier-bright",
     },
   ];
   return (
-    <div className="flex h-full flex-col bg-white">
-      <div className="border-frost-edge/60 border-b px-4 py-2.5">
+    <div className={`flex h-full flex-col ${surface}`}>
+      <div className="border-white/8 border-b px-4 py-2.5">
         <p className="font-semibold text-[12px] text-ink">May 2026</p>
       </div>
       <div className="grid flex-1 grid-cols-5">
         {["Mon", "Tue", "Wed", "Thu", "Fri"].map((d, col) => (
           <div
             key={d}
-            className="relative border-frost-edge/50 border-r last:border-r-0"
+            className="relative border-white/8 border-r last:border-r-0"
           >
             <p className="py-1.5 text-center text-[9px] text-ink-faint">{d}</p>
             {events
@@ -253,16 +254,16 @@ export function MailMock() {
     },
   ];
   return (
-    <div className="flex h-full flex-col bg-white">
-      <div className="border-frost-edge/60 border-b px-4 py-2.5">
+    <div className={`flex h-full flex-col ${surface}`}>
+      <div className="border-white/8 border-b px-4 py-2.5">
         <p className="font-semibold text-[12px] text-ink">Inbox</p>
         <p className="text-[9px] text-ink-faint">2 unread</p>
       </div>
-      <div className="flex-1 divide-y divide-frost-edge/50">
+      <div className="flex-1 divide-y divide-white/8">
         {mail.map((m) => (
           <div key={m.subj} className="flex items-start gap-2 px-4 py-2.5">
             {m.unread ? (
-              <span className="mt-1 size-1.5 shrink-0 rounded-full bg-glacier" />
+              <span className="mt-1 size-1.5 shrink-0 rounded-full bg-glacier-bright" />
             ) : (
               <span className="mt-1 size-1.5 shrink-0" />
             )}
@@ -290,24 +291,22 @@ export function MailMock() {
 
 export function DocMock() {
   return (
-    <div className="h-full bg-white px-6 py-5">
-      <p className="font-mono text-[9px] text-glacier-deep uppercase tracking-[0.18em]">
+    <div className={`h-full px-6 py-5 ${surface}`}>
+      <p className="font-mono text-[9px] text-glacier-bright uppercase tracking-[0.18em]">
         Draft
       </p>
       <p className="mt-1 font-semibold text-[15px] text-ink leading-tight">
         Why the screen competes with you
       </p>
       <p className="mt-3 text-[10.5px] text-ink-muted leading-relaxed">
-        You don't have a focus problem. You have twelve windows quietly
-        screaming for your attention — a half-read thread, a file from last
-        Tuesday, a terminal you forgot you opened.
+        You don't have a focus problem. You have twelve windows open, and eleven
+        of them aren't the work.
       </p>
       <p className="mt-2.5 text-[10.5px] text-ink-muted leading-relaxed">
-        The window you're working in should stay sharp and vivid. Everything
-        else can soften into a calm backdrop you see past, but no longer get
-        lost in.
+        The active window should stay sharp. Everything else can soften into a
+        backdrop you see past, not get lost in.
       </p>
-      <div className="mt-3 h-1.5 w-2/5 rounded-full bg-glacier/30" />
+      <div className="mt-3 h-1.5 w-2/5 rounded-full bg-glacier/40" />
     </div>
   );
 }
@@ -319,18 +318,18 @@ export function PrefsMock() {
     { label: "Edge falloff", fill: "55%" },
   ];
   return (
-    <div className="h-full bg-white px-6 py-5">
+    <div className={`h-full px-6 py-5 ${surface}`}>
       <p className="font-semibold text-[13px] text-ink">Frosty — Preferences</p>
       <div className="mt-4 space-y-3.5">
         {sliders.map((s) => (
           <div key={s.label}>
             <p className="mb-1 flex justify-between text-[10px]">
               <span className="text-ink-muted">{s.label}</span>
-              <span className="font-mono text-glacier-deep">{s.fill}</span>
+              <span className="font-mono text-glacier-bright">{s.fill}</span>
             </p>
             <div className="h-1.5 rounded-full bg-frost-edge">
               <div
-                className="h-full rounded-full bg-glacier"
+                className="h-full rounded-full bg-glacier-bright"
                 style={{ width: s.fill }}
               />
             </div>
@@ -340,8 +339,8 @@ export function PrefsMock() {
           <span className="text-[10px] text-ink-muted">
             Shake cursor to toggle
           </span>
-          <span className="flex h-4 w-7 items-center rounded-full bg-glacier px-0.5">
-            <span className="ml-auto size-3 rounded-full bg-white" />
+          <span className="flex h-4 w-7 items-center rounded-full bg-glacier-bright px-0.5">
+            <span className="ml-auto size-3 rounded-full bg-[#06121d]" />
           </span>
         </div>
       </div>
@@ -351,15 +350,15 @@ export function PrefsMock() {
 
 export function TerminalMock() {
   return (
-    <div className="h-full bg-[#0f1720] px-5 py-4 font-mono text-[10px] leading-[1.7]">
-      <p className="text-frost-edge">$ frosty --status</p>
-      <p className="text-[#5b9fc9]">● active window: FrostController.swift</p>
-      <p className="text-[#28c840]"> idle cpu ......... 0.0%</p>
-      <p className="text-[#28c840]"> active cpu ....... 0.3%</p>
-      <p className="text-[#28c840]"> memory ........... 38 MB</p>
-      <p className="mt-1 text-frost-edge/60">
+    <div className="h-full bg-[#0d141b] px-5 py-4 font-mono text-[10px] leading-[1.7]">
+      <p className="text-ink-faint">$ frosty --status</p>
+      <p className="text-[#7fc8ef]">● active window: FrostController.swift</p>
+      <p className="text-[#6fdc8a]"> idle cpu ......... 0.0%</p>
+      <p className="text-[#6fdc8a]"> active cpu ....... 0.3%</p>
+      <p className="text-[#6fdc8a]"> memory ........... 38 MB</p>
+      <p className="mt-1 text-ink-faint">
         $ the window that matters, in focus
-        <span className="ml-1 inline-block h-3 w-1.5 translate-y-0.5 bg-frost-edge" />
+        <span className="ml-1 inline-block h-3 w-1.5 translate-y-0.5 bg-ink-faint" />
       </p>
     </div>
   );

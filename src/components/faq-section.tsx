@@ -1,7 +1,7 @@
 "use client";
 
 import { useGSAP } from "@gsap/react";
-import { CaretDown } from "@phosphor-icons/react";
+import { ArrowUpRight, Plus } from "@phosphor-icons/react";
 import { useRef, useState } from "react";
 import { Flip, prefersReducedMotion } from "@/lib/gsap";
 import { SplitHeading } from "./split-heading";
@@ -9,43 +9,27 @@ import { SplitHeading } from "./split-heading";
 const faqs = [
   {
     q: "Does Frosty work on Intel Macs?",
-    a: "Yes. Frosty runs natively on both Apple Silicon and Intel Macs on macOS 14 Sonoma and later. Apple Silicon is recommended for the smoothest animation, but the effect is fluid on both.",
-  },
-  {
-    q: "Does it work with multiple monitors?",
-    a: "Yes. Each display tracks its own active window, and frost is applied independently across monitors. Drag a window between displays and the focus follows.",
+    a: "Yes — natively on both Apple Silicon and Intel, on macOS 14 Sonoma and later.",
   },
   {
     q: "Will it slow my Mac down?",
-    a: "Frosty uses the same rendering layer macOS already uses for window effects. Idle CPU sits at roughly zero. Active CPU during window switches is a fraction of a percent. Memory stays under 40 MB.",
+    a: "No. Frosty uses the same rendering layer macOS already uses for window effects. Idle CPU is near zero and memory stays under 40 MB.",
+  },
+  {
+    q: "Does it work with multiple monitors?",
+    a: "Yes. Each display tracks its own active window and applies frost independently.",
   },
   {
     q: "Can I disable it for specific apps?",
-    a: "Yes. You can exclude any app from the frost effect entirely — useful for video calls, design tools where you need full-screen context, or apps that have their own focus modes.",
-  },
-  {
-    q: "Does Frosty work in screen recordings or while screen sharing?",
-    a: "Yes. The frost is applied at the compositor level, so it appears in screen recordings, Zoom calls, Loom captures, and any other screen-sharing tool. Many users keep Frosty on specifically for presentations.",
+    a: "Yes. Exclude any app from the effect — handy for video calls or full-screen design tools.",
   },
   {
     q: "Does Frosty collect any data?",
-    a: "No. Frosty has no analytics, no telemetry, no account, and no network calls. It runs entirely on your Mac. The only thing that leaves your machine is the license check during initial activation.",
-  },
-  {
-    q: "Is Frosty open source?",
-    a: "No. Frosty is closed-source software built and maintained by a single developer. This keeps the codebase tightly scoped, the performance budget tightly enforced, and the design vision intact.",
-  },
-  {
-    q: 'How is Frosty different from macOS\'s built-in "Hide Others" or Stage Manager?',
-    a: "'Hide Others' removes windows from view entirely, so you lose visual context. Stage Manager rearranges your windows into groups, which adds its own cognitive load. Frosty does neither — your windows stay exactly where you left them; they just become visually quieter than the one you're working in.",
-  },
-  {
-    q: "Can I shake the cursor to toggle Frosty quickly?",
-    a: "Yes. A quick side-to-side cursor flick toggles the frost effect on or off instantly. It's the fastest way to peek at a reference window without breaking your flow.",
+    a: "No analytics, no telemetry, no account. Frosty runs entirely on your Mac and never phones home.",
   },
   {
     q: "What if I don't like it?",
-    a: "The first 7 days are free, full-featured, and require no payment up front. If Frosty doesn't change the way your screen feels, don't buy it. If it does, $9 once.",
+    a: "The 7-day trial is free and full-featured. If it doesn't change how your screen feels, don't buy it.",
   },
 ];
 
@@ -57,7 +41,7 @@ export function FaqSection() {
   const handleToggle = (index: number) => {
     const items = ref.current?.querySelectorAll("[data-faq-item]");
     if (items && !prefersReducedMotion()) {
-      flipState.current = Flip.getState(items);
+      flipState.current = Flip.getState(items, { props: "borderColor" });
     }
     setOpen((current) => (current === index ? null : index));
   };
@@ -66,8 +50,8 @@ export function FaqSection() {
     () => {
       if (!flipState.current) return;
       Flip.from(flipState.current, {
-        duration: 0.45,
-        ease: "power2.inOut",
+        duration: 0.5,
+        ease: "power3.inOut",
         nested: true,
       });
       flipState.current = null;
@@ -76,43 +60,112 @@ export function FaqSection() {
   );
 
   return (
-    <section id="faq" className="px-6 py-28">
-      <div ref={ref} className="mx-auto max-w-3xl">
-        <p className="mb-4 text-center font-mono text-glacier-deep text-xs uppercase tracking-[0.22em]">
-          Questions
-        </p>
-        <SplitHeading
-          as="h2"
-          className="text-balance text-center font-semibold text-4xl text-ink leading-tight tracking-tight sm:text-5xl"
-        >
-          Frequently asked questions
-        </SplitHeading>
+    <section id="faq" className="relative overflow-hidden px-6 py-28">
+      {/* Ambient glow anchored to the section */}
+      <div
+        aria-hidden
+        className="aurora-blob -z-10 absolute top-1/3 left-[8%] size-[28rem] rounded-full bg-glacier/10 blur-[120px]"
+      />
 
-        <div className="mt-12 space-y-3">
+      <div className="mx-auto grid max-w-6xl gap-x-16 gap-y-12 lg:grid-cols-[0.82fr_1.18fr]">
+        {/* Left rail — sticky context panel */}
+        <div className="lg:sticky lg:top-28 lg:self-start">
+          <div className="flex items-center gap-3">
+            <span className="h-px w-8 bg-gradient-to-r from-transparent to-glacier-bright/70" />
+            <p className="font-mono text-glacier-bright text-xs uppercase tracking-[0.22em]">
+              Questions
+            </p>
+          </div>
+          <SplitHeading
+            as="h2"
+            className="mt-5 text-balance font-semibold text-4xl text-ink leading-[1.08] tracking-tight sm:text-5xl"
+          >
+            Answers, before you ask.
+          </SplitHeading>
+          <p className="mt-5 max-w-sm text-balance text-ink-muted leading-relaxed">
+            Six things people check before installing. If yours isn't here, it's
+            one short email away.
+          </p>
+
+          <a
+            href="mailto:hello@frostyapp.com"
+            className="group mt-8 flex items-center justify-between gap-4 rounded-2xl border border-white/8 bg-frost-pale/70 p-5 backdrop-blur-sm transition-[border-color,transform] duration-300 ease-glass hover:-translate-y-0.5 hover:border-glacier/40"
+          >
+            <span>
+              <span className="block font-medium text-ink text-sm">
+                Still wondering something?
+              </span>
+              <span className="block text-ink-faint text-xs">
+                hello@frostyapp.com — we reply fast.
+              </span>
+            </span>
+            <span className="flex size-10 shrink-0 items-center justify-center rounded-xl border border-glacier/30 bg-glacier/10 text-glacier-bright transition-transform duration-300 ease-glass group-hover:rotate-45">
+              <ArrowUpRight weight="bold" className="size-5" />
+            </span>
+          </a>
+        </div>
+
+        {/* Right — accordion */}
+        <div ref={ref} className="flex flex-col gap-2.5">
           {faqs.map((faq, i) => {
             const isOpen = open === i;
             return (
               <div
                 key={faq.q}
                 data-faq-item
-                className="overflow-hidden rounded-xl border border-frost-edge bg-white/70 backdrop-blur-sm"
+                className={`group relative overflow-hidden rounded-2xl border backdrop-blur-sm transition-colors duration-300 ease-glass ${
+                  isOpen
+                    ? "border-glacier/45 bg-frost-deep/80"
+                    : "border-white/8 bg-frost-pale/60 hover:border-white/15"
+                }`}
               >
+                {/* Accent rail — slides in when open */}
+                <span
+                  aria-hidden
+                  className={`absolute inset-y-0 left-0 w-px bg-gradient-to-b from-glacier-bright via-glacier to-transparent transition-opacity duration-300 ${
+                    isOpen ? "opacity-100" : "opacity-0"
+                  }`}
+                />
+
                 <button
                   type="button"
                   onClick={() => handleToggle(i)}
                   aria-expanded={isOpen}
-                  className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
+                  className="flex w-full items-start gap-4 px-6 py-5 text-left sm:px-7"
                 >
-                  <span className="font-medium text-ink">{faq.q}</span>
-                  <CaretDown
-                    weight="bold"
-                    className={`size-5 shrink-0 text-glacier transition-transform duration-300 ease-glass ${
-                      isOpen ? "rotate-180" : ""
+                  <span
+                    className={`mt-0.5 font-mono text-sm tabular-nums transition-colors duration-300 ${
+                      isOpen
+                        ? "text-glacier-bright"
+                        : "text-frost-edge group-hover:text-ink-faint"
                     }`}
-                  />
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span
+                    className={`flex-1 font-medium text-base tracking-tight transition-colors duration-300 sm:text-lg ${
+                      isOpen
+                        ? "text-ink"
+                        : "text-ink-muted group-hover:text-ink"
+                    }`}
+                  >
+                    {faq.q}
+                  </span>
+                  <span
+                    className={`flex size-7 shrink-0 items-center justify-center rounded-full border transition-[transform,background-color,border-color] duration-300 ease-glass ${
+                      isOpen
+                        ? "rotate-[135deg] border-glacier-bright/50 bg-glacier/15 text-glacier-bright"
+                        : "border-white/12 text-ink-faint group-hover:border-white/25 group-hover:text-ink-muted"
+                    }`}
+                  >
+                    <Plus weight="bold" className="size-3.5" />
+                  </span>
                 </button>
-                <div data-answer hidden={!isOpen} className="px-6 pb-5">
-                  <p className="text-ink-muted leading-relaxed">{faq.a}</p>
+
+                <div data-answer hidden={!isOpen} className="px-6 pb-6 sm:px-7">
+                  <div className="ml-[2.1rem] border-glacier/25 border-l pl-4">
+                    <p className="text-ink-muted leading-relaxed">{faq.a}</p>
+                  </div>
                 </div>
               </div>
             );
