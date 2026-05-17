@@ -14,7 +14,7 @@ export function SiteFooter() {
   return (
     <footer className="relative overflow-hidden border-white/8 border-t bg-frost-mist px-6 py-20">
       <div
-        className="haze-blob -translate-x-1/2 pointer-events-none absolute top-0 left-1/2 size-[34rem] rounded-full bg-glacier/10 blur-3xl"
+        className="haze-blob -translate-x-1/2 pointer-events-none absolute top-0 left-1/2 size-136 rounded-full bg-glacier/10 blur-3xl"
         aria-hidden
       />
       <div className="relative mx-auto max-w-4xl text-center">

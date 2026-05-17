@@ -1,84 +1,72 @@
 import type { MetadataRoute } from "next";
 import { siteMeta } from "@/lib/site-meta";
 
+// AI crawlers and training bots — search engine bots (Googlebot, Bingbot, etc.) are intentionally excluded
 const BLOCKED_BOTS = [
+  // OpenAI
   "GPTBot",
   "ChatGPT-User",
   "OAI-SearchBot",
+  // Anthropic
   "ClaudeBot",
   "Claude-Web",
   "Claude-User",
   "Claude-SearchBot",
   "anthropic-ai",
+  // Google AI (not search — Google-Extended opts out of Gemini training)
   "Google-Extended",
   "GoogleOther",
-  "Googlebot",
-  "Googlebot-Image",
-  "Googlebot-Video",
-  "Googlebot-News",
-  "AdsBot-Google",
-  "Mediapartners-Google",
-  "Bingbot",
-  "BingPreview",
-  "msnbot",
-  "Slurp",
-  "DuckDuckBot",
-  "DuckAssistBot",
-  "Baiduspider",
-  "YandexBot",
-  "Sogou",
-  "Exabot",
-  "facebot",
-  "ia_archiver",
+  // Perplexity AI
   "PerplexityBot",
   "Perplexity-User",
-  "Applebot",
+  // Apple AI training (Applebot for search is allowed via wildcard)
   "Applebot-Extended",
+  // Amazon AI
   "Amazonbot",
+  // ByteDance / TikTok
   "Bytespider",
   "ByteDance",
   "TikTokSpider",
+  // Common Crawl (used for LLM training datasets)
   "CCBot",
+  // Cohere
   "cohere-ai",
   "cohere-training-data-crawler",
+  // Diffbot (AI data extraction)
   "Diffbot",
+  // Meta AI
   "FacebookBot",
-  "FriendlyCrawler",
+  "facebot",
   "Meta-ExternalAgent",
   "Meta-ExternalFetcher",
+  // Dataset / image scrapers
+  "FriendlyCrawler",
   "ImagesiftBot",
   "img2dataset",
-  "Kangaroo Bot",
-  "Mistral",
-  "MistralAI-User",
-  "OmgiliBot",
-  "Omgili",
-  "PanguBot",
-  "PetalBot",
-  "Scrapy",
-  "SemrushBot",
-  "AhrefsBot",
-  "MJ12bot",
-  "DataForSeoBot",
-  "Timpibot",
   "VelenPublicWebCrawler",
   "Webzio-Extended",
+  // Mistral
+  "Mistral",
+  "MistralAI-User",
+  // Omgili / Brandwatch AI
+  "OmgiliBot",
+  "Omgili",
+  // Huawei AI
+  "PanguBot",
+  // DuckDuckGo AI assistant (DuckDuckBot search crawler is allowed via wildcard)
+  "DuckAssistBot",
+  // You.com AI
   "YouBot",
+  // Other AI/scraping bots
+  "Kangaroo Bot",
   "iaskspider/2.0",
   "ISSCyberRiskCrawler",
   "news-please",
   "peer39_crawler",
   "peer39_crawler/1.0",
   "QuillBot",
-  "SiteAuditBot",
-  "Twitterbot",
-  "LinkedInBot",
-  "PiplBot",
-  "Pinterestbot",
-  "TelegramBot",
-  "WhatsApp",
-  "Discordbot",
-  "Slackbot",
+  "Timpibot",
+  "Scrapy",
 ];
 
 export default function robots(): MetadataRoute.Robots {
@@ -90,7 +78,7 @@ export default function robots(): MetadataRoute.Robots {
       })),
       {
         userAgent: "*",
-        disallow: "/",
+        allow: "/",
       },
     ],
     sitemap: `${siteMeta.url}/sitemap.xml`,

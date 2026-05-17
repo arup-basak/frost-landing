@@ -65,7 +65,7 @@ export function FaqSection() {
       {/* Ambient glow anchored to the section */}
       <div
         aria-hidden
-        className="aurora-blob -z-10 absolute top-1/3 left-[8%] size-[28rem] rounded-full bg-glacier/10 blur-[120px]"
+        className="aurora-blob -z-10 absolute top-1/3 left-[8%] size-112 rounded-full bg-glacier/10 blur-[120px]"
       />
 
       <div className="mx-auto grid max-w-6xl gap-x-16 gap-y-12 lg:grid-cols-[0.82fr_1.18fr]">

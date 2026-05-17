@@ -42,7 +42,7 @@ export function UseCasesSection() {
   return (
     <section id="use-cases" className="relative overflow-hidden px-6 py-28">
       <div
-        className="aurora-blob pointer-events-none absolute top-20 right-0 size-[34rem] rounded-full bg-glacier/12 blur-3xl"
+        className="aurora-blob pointer-events-none absolute top-20 right-0 size-136 rounded-full bg-glacier/12 blur-3xl"
         aria-hidden
       />
       <div className="relative mx-auto max-w-6xl">

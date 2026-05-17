@@ -37,7 +37,7 @@ function Thumb({ label }: { label: string }) {
       </div>
       <div
         data-thumb-frost
-        className="absolute inset-0 bg-glacier/15 backdrop-blur-[4px]"
+        className="absolute inset-0 bg-glacier/15 backdrop-blur-xs"
         style={{ opacity: 0 }}
       />
     </div>
@@ -92,7 +92,7 @@ export function ProblemSection() {
 
   return (
     <section ref={ref} className="relative overflow-hidden px-6 py-28">
-      <div className="relative mx-auto h-[34rem] max-w-5xl sm:h-[36rem]">
+      <div className="relative mx-auto h-136 max-w-5xl sm:h-144">
         {thumbs.map((t) => (
           <div
             key={t.label}
