@@ -1,6 +1,7 @@
 "use client";
 
-import { Snowflake } from "@phosphor-icons/react";
+import { SnowflakeIcon } from "@phosphor-icons/react";
+import Link from "next/link";
 
 const links = [
   { label: "Download", href: "#download" },
@@ -17,7 +18,7 @@ export function SiteFooter() {
         aria-hidden
       />
       <div className="relative mx-auto max-w-4xl text-center">
-        <Snowflake
+        <SnowflakeIcon
           weight="duotone"
           className="mx-auto size-9 text-glacier-bright"
         />
@@ -30,13 +31,13 @@ export function SiteFooter() {
 
         <nav className="mt-8 flex flex-wrap items-center justify-center gap-x-7 gap-y-3">
           {links.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               className="text-ink-muted text-sm transition-colors duration-200 hover:text-glacier-bright"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
 

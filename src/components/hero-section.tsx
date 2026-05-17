@@ -197,7 +197,7 @@ export function HeroSection() {
         </div>
       </div>
 
-      <div className="relative mx-auto mt-20 max-w-5xl [perspective:2000px]">
+      <div className="relative mx-auto mt-20 max-w-5xl perspective-[2000px]">
         <div data-stack className="relative h-[20rem] sm:h-[26rem]">
           <div data-window className="absolute top-[14%] left-0 z-10 w-[46%]">
             <MacosWindow title="slack — #design-sync">

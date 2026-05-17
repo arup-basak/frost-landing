@@ -1,7 +1,8 @@
 "use client";
 
 import { useGSAP } from "@gsap/react";
-import { ArrowUpRight, Plus } from "@phosphor-icons/react";
+import { ArrowUpRightIcon, PlusIcon } from "@phosphor-icons/react";
+import Link from "next/link";
 import { useRef, useState } from "react";
 import { Flip, prefersReducedMotion } from "@/lib/gsap";
 import { SplitHeading } from "./split-heading";
@@ -71,7 +72,7 @@ export function FaqSection() {
         {/* Left rail — sticky context panel */}
         <div className="lg:sticky lg:top-28 lg:self-start">
           <div className="flex items-center gap-3">
-            <span className="h-px w-8 bg-gradient-to-r from-transparent to-glacier-bright/70" />
+            <span className="h-px w-8 bg-linear-to-r from-transparent to-glacier-bright/70" />
             <p className="font-mono text-glacier-bright text-xs uppercase tracking-[0.22em]">
               Questions
             </p>
@@ -87,7 +88,7 @@ export function FaqSection() {
             one short email away.
           </p>
 
-          <a
+          <Link
             href="mailto:hello@frostyapp.com"
             className="group mt-8 flex items-center justify-between gap-4 rounded-2xl border border-white/8 bg-frost-pale/70 p-5 backdrop-blur-sm transition-[border-color,transform] duration-300 ease-glass hover:-translate-y-0.5 hover:border-glacier/40"
           >
@@ -100,9 +101,9 @@ export function FaqSection() {
               </span>
             </span>
             <span className="flex size-10 shrink-0 items-center justify-center rounded-xl border border-glacier/30 bg-glacier/10 text-glacier-bright transition-transform duration-300 ease-glass group-hover:rotate-45">
-              <ArrowUpRight weight="bold" className="size-5" />
+              <ArrowUpRightIcon weight="bold" className="size-5" />
             </span>
-          </a>
+          </Link>
         </div>
 
         {/* Right — accordion */}
@@ -122,7 +123,7 @@ export function FaqSection() {
                 {/* Accent rail — slides in when open */}
                 <span
                   aria-hidden
-                  className={`absolute inset-y-0 left-0 w-px bg-gradient-to-b from-glacier-bright via-glacier to-transparent transition-opacity duration-300 ${
+                  className={`absolute inset-y-0 left-0 w-px bg-linear-to-b from-glacier-bright via-glacier to-transparent transition-opacity duration-300 ${
                     isOpen ? "opacity-100" : "opacity-0"
                   }`}
                 />
@@ -154,11 +155,11 @@ export function FaqSection() {
                   <span
                     className={`flex size-7 shrink-0 items-center justify-center rounded-full border transition-[transform,background-color,border-color] duration-300 ease-glass ${
                       isOpen
-                        ? "rotate-[135deg] border-glacier-bright/50 bg-glacier/15 text-glacier-bright"
+                        ? "rotate-135 border-glacier-bright/50 bg-glacier/15 text-glacier-bright"
                         : "border-white/12 text-ink-faint group-hover:border-white/25 group-hover:text-ink-muted"
                     }`}
                   >
-                    <Plus weight="bold" className="size-3.5" />
+                    <PlusIcon weight="bold" className="size-3.5" />
                   </span>
                 </button>
 

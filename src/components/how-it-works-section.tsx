@@ -1,24 +1,28 @@
 "use client";
 
 import { useGSAP } from "@gsap/react";
-import { ArrowsClockwise, CursorClick, Drop } from "@phosphor-icons/react";
+import {
+  ArrowsClockwiseIcon,
+  CursorClickIcon,
+  DropIcon,
+} from "@phosphor-icons/react";
 import { useRef } from "react";
 import { gsap, prefersReducedMotion } from "@/lib/gsap";
 import { SplitHeading } from "./split-heading";
 
 const steps = [
   {
-    icon: CursorClick,
+    icon: CursorClickIcon,
     title: "Click any window",
     body: "Click into the window you want to work in. That's the only input Frosty needs.",
   },
   {
-    icon: Drop,
+    icon: DropIcon,
     title: "The rest frost over",
     body: "Every inactive window softens to frosted glass — blurred, dimmed, quiet.",
   },
   {
-    icon: ArrowsClockwise,
+    icon: ArrowsClockwiseIcon,
     title: "Switch and it follows",
     body: "Click elsewhere and the frost moves with you. No shortcut, no toggle, no menu.",
   },
@@ -79,7 +83,7 @@ export function HowItWorksSection() {
         <div className="relative mt-16">
           <div
             data-line
-            className="absolute top-9 right-[16%] left-[16%] hidden h-px bg-gradient-to-r from-glacier/10 via-glacier-bright/50 to-glacier/10 md:block"
+            className="absolute top-9 right-[16%] left-[16%] hidden h-px bg-linear-to-r from-glacier/10 via-glacier-bright/50 to-glacier/10 md:block"
             aria-hidden
           />
           <div className="grid gap-6 md:grid-cols-3">

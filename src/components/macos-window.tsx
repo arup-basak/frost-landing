@@ -43,7 +43,7 @@ export function MacosWindow({
         </span>
       </div>
 
-      <div className="relative aspect-[16/10] w-full">
+      <div className="relative aspect-16/10 w-full">
         {src ? (
           <Image
             src={src}

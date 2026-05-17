@@ -352,7 +352,9 @@ export function TerminalMock() {
   return (
     <div className="h-full bg-[#0d141b] px-5 py-4 font-mono text-[10px] leading-[1.7]">
       <p className="text-ink-faint">$ frosty --status</p>
-      <p className="text-[#7fc8ef]">● active window: FrostController.swift</p>
+      <p className="text-glacier-bright">
+        ● active window: FrostController.swift
+      </p>
       <p className="text-[#6fdc8a]"> idle cpu ......... 0.0%</p>
       <p className="text-[#6fdc8a]"> active cpu ....... 0.3%</p>
       <p className="text-[#6fdc8a]"> memory ........... 38 MB</p>

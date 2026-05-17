@@ -220,7 +220,7 @@ export function FrostDials() {
           {/* Live preview */}
           <div
             data-preview
-            className="relative aspect-[4/3] cursor-pointer select-none overflow-hidden rounded-2xl border border-white/10 bg-[#0c1219] shadow-[0_40px_90px_-40px_rgba(0,0,0,0.9)]"
+            className="relative aspect-4/3 cursor-pointer select-none overflow-hidden rounded-2xl border border-white/10 bg-[#0c1219] shadow-[0_40px_90px_-40px_rgba(0,0,0,0.9)]"
           >
             {/* Inactive desktop windows — real content, so the frost is legible */}
             <div className="absolute inset-0 grid grid-cols-2 grid-rows-2 gap-4 p-6">
@@ -278,7 +278,7 @@ export function FrostDials() {
             </div>
 
             {/* State caption */}
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent px-4 pt-8 pb-3">
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-linear-to-t from-black/70 to-transparent px-4 pt-8 pb-3">
               <span
                 data-caption
                 className="font-mono text-[11px] text-glacier-bright tracking-wide"
@@ -299,7 +299,7 @@ export function FrostDials() {
                 <div className="relative flex size-24 items-center justify-center">
                   {/* Progress ring */}
                   <svg
-                    className="absolute inset-0 size-24 rotate-[135deg]"
+                    className="absolute inset-0 size-24 rotate-135"
                     viewBox="0 0 96 96"
                     aria-hidden="true"
                   >

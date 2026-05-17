@@ -31,7 +31,7 @@ function Thumb({ label }: { label: string }) {
           {label}
         </span>
       </div>
-      <div className="h-14 bg-gradient-to-br from-[#161e28] to-[#11181f] p-1.5">
+      <div className="h-14 bg-linear-to-br from-[#161e28] to-[#11181f] p-1.5">
         <div className="h-1.5 w-3/4 rounded-full bg-white/10" />
         <div className="mt-1 h-1.5 w-1/2 rounded-full bg-white/10" />
       </div>

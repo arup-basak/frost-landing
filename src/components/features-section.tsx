@@ -1,6 +1,11 @@
 "use client";
 
-import { Cpu, Lightning, ShieldCheck, Stack } from "@phosphor-icons/react";
+import {
+  CpuIcon,
+  LightningIcon,
+  ShieldCheckIcon,
+  StackIcon,
+} from "@phosphor-icons/react";
 import { ChatMock, DocMock } from "./app-mocks";
 import { MacosWindow } from "./macos-window";
 import { Reveal } from "./reveal";
@@ -8,22 +13,22 @@ import { SplitHeading } from "./split-heading";
 
 const cards = [
   {
-    icon: Cpu,
+    icon: CpuIcon,
     title: "Native and light",
     body: "Built in Swift on Apple's own compositor. Idle CPU near zero, under 40 MB of memory.",
   },
   {
-    icon: ShieldCheck,
+    icon: ShieldCheckIcon,
     title: "Private by default",
     body: "No account, no telemetry, no network calls. Everything stays on your Mac.",
   },
   {
-    icon: Lightning,
+    icon: LightningIcon,
     title: "Instant snap-back",
     body: "The frost follows your focus with no lag — the sharp window is always the active one.",
   },
   {
-    icon: Stack,
+    icon: StackIcon,
     title: "Per-app exclusions",
     body: "Exempt video calls, design tools, or any app that needs full context.",
   },

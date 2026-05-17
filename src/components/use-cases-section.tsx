@@ -1,38 +1,38 @@
 "use client";
 
 import {
-  BookOpen,
-  Brain,
-  Broadcast,
-  Code,
-  Target,
+  BookOpenIcon,
+  BrainIcon,
+  BroadcastIcon,
+  CodeIcon,
+  TargetIcon,
 } from "@phosphor-icons/react";
 import { Reveal } from "./reveal";
 import { SplitHeading } from "./split-heading";
 
 const useCases = [
   {
-    icon: Target,
+    icon: TargetIcon,
     title: "Deep work",
     body: "Ninety minutes, one document. Frosty makes it the only thing you can really see.",
   },
   {
-    icon: Code,
+    icon: CodeIcon,
     title: "Coding with intent",
     body: "Your editor stays sharp while the terminal, browser, and docs frost quietly behind it.",
   },
   {
-    icon: Brain,
+    icon: BrainIcon,
     title: "ADHD-aware focus",
     body: "The bright window is the one you're in. Everything else is visibly 'not now'.",
   },
   {
-    icon: Broadcast,
+    icon: BroadcastIcon,
     title: "Screen sharing",
     body: "Activate the deck you're presenting — every other window frosts past readability.",
   },
   {
-    icon: BookOpen,
+    icon: BookOpenIcon,
     title: "Reading & writing",
     body: "Frost the rest, read the one. The screen stops acting like twelve channels at once.",
   },
