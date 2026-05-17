@@ -1,3 +1,5 @@
+"use client";
+
 import { FaqSection } from "@/components/faq-section";
 import { FeaturesSection } from "@/components/features-section";
 import { FrostDials } from "@/components/frost-dials";

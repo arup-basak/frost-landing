@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { ReactNode } from "react";
 
 interface CtaButtonProps {
@@ -24,8 +25,8 @@ export function CtaButton({
   className = "",
 }: CtaButtonProps) {
   return (
-    <a href={href} className={`${base} ${variants[variant]} ${className}`}>
+    <Link href={href} className={`${base} ${variants[variant]} ${className}`}>
       {children}
-    </a>
+    </Link>
   );
 }

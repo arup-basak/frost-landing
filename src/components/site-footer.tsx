@@ -1,3 +1,5 @@
+"use client";
+
 import { Snowflake } from "@phosphor-icons/react";
 
 const links = [
